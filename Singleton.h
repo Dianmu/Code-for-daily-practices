@@ -16,7 +16,7 @@ public:
 		}
 	}
 	void doSomething(){
-		std::cout << "do Something..." << std::endl;
+		//cout << "do Something..." << endl;
 	}
 private:
 	Singleton(){}
@@ -27,7 +27,7 @@ private:
 	public:
 		~GC(){
 			if(m_pSingleton != nullptr){
-				std::cout << "Here Destroying the m_pSingleton..." << endl;
+				//cout << "Here Destroying the m_pSingleton..." << endl;
 				delete m_pSingleton;
 				m_pSingleton = nullptr;
 			}

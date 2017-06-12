@@ -1,8 +1,9 @@
-#include "aaa.h"
+#include "Singleton.h"
 
 
 // This is lazy
 //efficient, multi-thread insecure
+/*
 Singleton* Singleton::m_pSingleton = nullptr;
 mutex Singleton::m_mutex;
 
@@ -11,7 +12,7 @@ Singleton* Singleton::GetInstance(){
 	if(m_pSingleton == nullptr)
 		m_pSingleton = new Singleton();
 	return m_pSingleton;
-}
+}*/
 //End lazy
 
 
