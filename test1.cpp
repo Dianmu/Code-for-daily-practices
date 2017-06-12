@@ -1,46 +1,54 @@
-#include<iostream>
-#include<ctime>
-#include<stack>
-#include<algorithm>
-#include<cmath>
-#include<cassert>
-#include<vector>
-#include<cstdio>
-#include<algorithm>
+#include <iostream>
+#include <ctime>
+#include <utility>
+#include <cstdlib>
+#include <cstdio>
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
+#include <set>
+#include <stack>
+
 using namespace std;
 
-//This is the maximum sum of continuous vectors
-int MaximumContinuesS(const vector<int> &a){
-    int n=a.size();
-    if(!n)return 0;
-    int ret_max=INT_MIN;
-    int tmp=a[0];
-    for(int i=1;i<n;++i){
-        //if tmp<0, then discard tmp, and refresh tmp with a[i]
-        tmp=max(a[i],tmp+a[i]);
-        //for each tmp-change, record the maximum appeared in the process
-        ret_max=max(ret_max,tmp);
-    }
-    return ret_max;
-}
-
-
-int main()
-{
-    clock_t start,end;
-    start=clock();
-//=========================================
-    const int space=500;
-    vector<int>vec(space);
-    srand(time(NULL));//only set once in main() to change seed.
-    for(int i=0;i<space;++i){
-        vec[i]=rand()%2001-1000;
-        cout<<vec[i]<<' ';
+//=====================================================================
+void print_vec(const vector<int>&vec){
+    for(auto ele:vec){
+        cout<<ele<<' ';
     }
     cout<<endl;
-    cout<<"连续子序列的最大和为： "<<MaximumContinuesS(vec)<<endl;
-//=========================================
-    end=clock();
-    cout<<"Total time: "<<(double)(end-start)/CLOCKS_PER_SEC<<"s"<<endl;
+}
+
+void print_vec(const vector<pair<int,int>>&vec){
+    for(auto ele:vec){
+        cout<<'('<<ele.first<<','<<ele.second<<')'<<' ';
+    }
+    cout<<endl;
+}
+
+int randomfill(){return rand()%100;}
+
+bool comp(const pair<int,int>&a,const pair<int,int>&b){
+    return (a.first>b.first||(a.first==b.first&&a.second<b.second));
+}
+bool comp1(const int&a,const int&b){
+    return a<b;
+}
+
+//=====================================================================
+
+int main(){
+    time_t start=clock();
+    srand(time(NULL));
+//=====================================================================
+    vector<int>vec(50);
+    generate(vec.begin(),vec.end(),randomfill);
+    cout<<"Is heap ? "<<(is_heap(vec.begin(),vec.end())?"YES":"NO")<<endl;
+
+    
+//=====================================================================
+    time_t end=clock();
+    cout<<'\n'<<"【Running time : ";
+    cout<<(double)(end-start)*1000/CLOCKS_PER_SEC<<" ms】\n\n";
     return 0;
 }
